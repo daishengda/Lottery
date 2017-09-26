@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.1.xsd
+						http://cxf.apache.org/jaxrs 
+						http://cxf.apache.org/schemas/jaxrs.xsd
+						http://cxf.apache.org/jaxws 
+						http://cxf.apache.org/schemas/jaxws.xsd">
+						
+<!-- 	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->
+						
+	<!-- 需要注册的服务 -->
+	<bean id="WSFileService" class="com.dsd.lottery.ws.WSFileService" />
+	
+	<bean id="WSExcelService" class="com.dsd.lottery.ws.WSExcelService" />
+	
+	<!-- 日志输入拦截器 -->
+	<bean id="inMessageInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+	
+	<!--日志输出拦截器 -->
+	<bean id="outMessageInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+	
+	<!-- address-请求路径 --> 
+	<jaxrs:server address="/">
+	
+		<!-- 输入拦截器设置 --> 
+		<jaxrs:inInterceptors>
+			<ref bean="inMessageInterceptor"/> 
+		</jaxrs:inInterceptors>
+		
+		<!-- 输出拦截器设置 --> 
+		<jaxrs:outInterceptors>
+			<ref bean="outMessageInterceptor"/> 
+		</jaxrs:outInterceptors>
+		
+		<!-- serviceBeans-暴露的WebService服务类 -->
+		<jaxrs:serviceBeans>
+			<ref bean="WSFileService" />
+			<ref bean="WSExcelService" />
+		</jaxrs:serviceBeans>
+		
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/> 
+		</jaxrs:providers>
+		
+		<!-- 支持的协议 --> 
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />		
+			<entry key="xml" value="application/xml" />	
+		</jaxrs:extensionMappings>
+	</jaxrs:server>
+</beans>

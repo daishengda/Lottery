@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="LotteryRecordMapper">
+	<resultMap type="com.dsd.lottery.model.LotteryModel" id="LotteryMap">
+		<id property="id" column="id" />
+		<result property="number" column="number" />
+		<result property="code" column="code" />
+		<result property="sortid" column="sortid" />
+	</resultMap>
+	
+	<!-- 批量插入 -->
+	<insert id="insertBatchRecord" parameterType="java.util.List">
+		 insert into tbl_lottery_record(`number`,`code`, `sortid`) values
+		 <foreach collection="list" item="item" index="index" separator=",">
+		 	(#{item.number},#{item.code},#{item.sortid})
+		 </foreach>
+	</insert>
+	
+	<!--  单条数据插入，返回ID -->
+	<insert id="insertRecord" useGeneratedKeys="true" keyProperty="id" parameterType="com.dsd.lottery.model.LotteryModel">
+		 insert into tbl_lottery_record(`number`,`code`,`sortid`) values
+		 	(#{number},#{code},#{sortid})
+	</insert>
+	
+	<update id="updateRecord" parameterType="com.dsd.lottery.model.LotteryModel">
+		 update tbl_lottery_record set number=#{number},code=#{code} where id=#{id}
+	</update>
+	
+	<select id="queryRecordCount" resultType="java.lang.Long" parameterType="java.util.Map">
+		select count(1) from tbl_lottery_record where 1=1
+		<if test="number != null">
+			and number like '%${number}%'
+		</if>
+	</select>
+	
+	<select id="queryRecord" resultMap="LotteryMap" parameterType="java.util.Map">
+		select * from tbl_lottery_record where 1=1
+		<if test="number != null">
+			and number like '%${number}%'
+		</if>
+		ORDER BY sortid DESC
+		<if test="offset != null and rows !=null">
+			limit #{offset},#{rows}
+		</if>
+	</select>
+	
+	<select id="queryRecordLimit" resultMap="LotteryMap" parameterType="java.util.Map">
+		select * from tbl_lottery_record where 1=1
+		<if test="sortid != null">
+			and sortid >= #{sortid}
+		</if>
+		<if test="limit !=null">
+			limit #{limit};
+		</if>
+	</select>
+	
+	<select id="queryAllRecord" resultMap="LotteryMap" parameterType="java.util.Map">
+		SELECT number,code FROM tbl_lottery_record WHERE 1 = 1
+		<if test="startStage != null and startStage != ''">
+			AND sortid >= #{startStage}
+		</if>
+		<if test="endStage != null and endStage != ''">
+			AND sortid <![CDATA[<=]]> #{endStage}
+		</if>
+		ORDER BY sortid
+	</select>
+	
+	<select id="queryRecordTopSize" resultMap="LotteryMap" parameterType="java.util.Map">
+		SELECT * FROM tbl_lottery_record WHERE 1 = 1
+		<if test="startStage != null and startStage != ''">
+			AND sortid >= #{startStage}
+		</if>
+		<if test="endStage != null and endStage != ''">
+			AND sortid <![CDATA[<=]]> #{endStage}
+		</if>
+		ORDER BY sortid DESC
+		LIMIT #{stage}
+	</select>
+	
+	<delete id="deleteRecord" parameterType="java.lang.String">
+		delete from tbl_lottery_record where id=#{id};
+	</delete>
+	
+	<!-- 清空表 -->
+	<delete id="truncateRecord">
+		TRUNCATE tbl_lottery_record;
+	</delete>
+</mapper>

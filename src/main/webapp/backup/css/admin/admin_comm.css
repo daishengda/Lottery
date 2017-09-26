@@ -1,0 +1,46 @@
+body{
+	background: #ebebeb;
+	color:#333333;
+}
+.tc{
+	width:67%;
+	text-align: center;
+}
+.tc td,.tc th{
+	border: 1px solid;
+}
+th{
+	background: #CCC;
+	text-align: center;
+}
+fieldset{
+	border: 2px solid #008ead;
+}
+fieldset legend{
+	font-weight: bold;
+	font-family: 'ËÎÌו';
+	color:#008ead;
+}
+a {
+	text-decoration: none;
+}
+
+a:link, a:visited {
+	color: #008edd;
+}
+
+a:hover {
+	color: #dd3409;
+}
+.reset,.submit{
+	background: none repeat scroll 0 0 #008ead; 
+	border-width: 0; 
+	font-size: 17px; 
+	color: #FFFFFF; 
+	font-weight: 500; 
+	border-radius: 6px; 
+	cursor:pointer; 
+}
+.idReadOnly{
+	background-color: #eeeeee;
+}

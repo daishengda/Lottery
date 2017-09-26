@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>数据导入</title>
+    <link href="css/themes/default/easyui.css" rel="stylesheet" />
+    <link href="css/themes/icon.css" rel="stylesheet" />
+    <link href="css/themes/color.css" rel="stylesheet" />
+    <style>
+        body {
+            font-size: 12px;
+            overflow-y: hidden;
+        }
+
+        input {
+            width: 100px;
+        }
+
+        select {
+            width: 104px;
+        }
+
+        #sec {
+            /*border:1px solid #0094ff;*/
+            width: 600px;
+        }
+
+            #sec td {
+                width: 100px;
+                height: 20px;
+                text-align: left;
+            }
+    </style>
+</head>
+<body>
+
+
+    <div>
+    	<form action="#" enctype="multipart/form-data" method="post" id="uploadForm">
+	        <table id="sec">
+	            <tr>                
+	                <td>
+	                
+	                	<input id="select_file" type="text" style="width:250px">
+	                
+	                    <a href="javascript:importData()" class="easyui-linkbutton c8" style="width:100px">导入</a>
+	                </td>
+	            </tr>
+	        </table>
+         </form>
+    </div>
+    <table id="record_table"></table>
+</body>
+    <script src="script/jquery.min.js"></script>
+    <script src="script/jquery.easyui.min.js"></script>
+    <script src="script/common.js"></script>
+    <script src="script/easyui-lang-zh_CN.js"></script>
+    <script src="script/DataManager/import_record.js"></script>
+</html>

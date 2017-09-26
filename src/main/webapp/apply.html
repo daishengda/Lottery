@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="css/themes/default/easyui.css" rel="stylesheet" />
+    <link href="css/themes/icon.css" rel="stylesheet" />
+    <link href="css/themes/color.css" rel="stylesheet" />
+    <link href="css/apply.css" rel="stylesheet" />
+    <script src="script/jquery.min.js"></script>
+    <script src="script/jquery.easyui.min.js"></script>
+    <title>服务申请</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="server">
+        <h3 class="apply_title">申请快递</h3>
+        <table class="table">
+            <tr>
+                <td colspan="6" class="head">申请人信息</td>
+                
+            </tr>
+            <tr>
+                <td class="first">申请人：</td>
+                <td class="input"><input type="text" name="name" value=" " /></td>
+                <td class="first">部门：</td>
+                <td class="input"><input type="text" name="name" value=" " /></td>
+                <td class="first">手机：</td>
+                <td class="input"><input type="text" name="name" value=" " /></td>
+            </tr>
+            <tr>
+                <td colspan="6" class="head">收件人信息</td>
+
+            </tr>
+            <tr>
+                <td class="first">收件人<span class="xing">*</span>：</td>
+                <td class="input"><input type="text" name="name" value=" " /></td>
+                <td class="first">手机<span class="xing">*</span>：</td>
+                <td class="input" colspan="4"><input type="text" name="name" value=" " /></td>
+            </tr>
+            <tr>
+                <td colspan="6" class="head">快递信息</td>
+
+            </tr>
+            <tr>
+                <td class="first">快递区域<span class="xing">*</span>：</td>
+                <td class="input">
+                    <select class="apply_range">
+                        <option value="value" >请选择</option>
+                        <option  class="apply_civil">国内</option>
+                        <option  class="apply_abroad">国外</option>
+                    </select>
+                    <select class="apply_proaddr">
+                        <option>请选择</option>
+                        <option>北京</option>
+                        <option>天津</option>
+                        <option>上海</option>
+                        <option>广州</option>
+                        <option>福建</option>
+                        <option>山东</option>
+                        <option>辽宁</option>
+                        <option>山西</option>
+                        <option>河南</option>
+                        <option>河北</option>
+                        <option>黑龙江</option>
+                        <option>大连</option>
+                    </select>
+                    <select class="apply_counaddr">
+                        <option>请选择</option>
+                        <option>美国</option>
+                        <option>法国</option>
+                        <option>英国</option>
+                        <option>日本</option>
+                        <option>俄国</option>
+                        <option>墨西哥</option>
+                        <option>巴黎</option>
+                        <option>韩国</option>
+                    </select>
+                </td>
+                <td class="first">快递类型<span class="xing">*</span>：</td>
+                <td class="input">
+                    <select>
+                        <option value="value">请选择</option>
+                        <option value="value">文件</option>
+                        <option value="value">其他</option>
+                    </select>
+                </td>
+                <td class="first">快递公司<span class="xing">*</span>：</td>
+                <td class="input">
+                    <select>
+                        <option value="value">请选择</option>
+                        <option value="value">EMS</option>
+                        <option value="value">顺丰</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="first">邮编<span class="xing">*</span>：</td>
+                <td class="input"><input type="text" name="name" value=" " /></td>
+                <td class="first">邮寄地址<span class="xing">*</span>：</td>
+                <td colspan="4" class="input"><input class="addr" type="text" name="name" value=" " /></td>
+                
+            </tr>
+            <tr>
+                <td colspan="6" class="head">申请说明</td>
+            </tr>
+            <tr>
+                <td class="secend" style="height:60px;" colspan="6">
+                    <textarea rows="4" cols="131" style="resize:none;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" class="head">备注</td>
+            </tr>
+            <tr>
+                <td class="secend" style="height:60px;" colspan="6">
+                    <textarea rows="4" cols="131" style="resize:none;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" style="height:40px;">
+                    <a href="javascript:;" class="easyui-linkbutton c1" style="width:50px;">提交</a>
+                </td>
+            </tr>
+</table>
+    </div>
+    <script>
+        $(function () {
+            $(".apply_proaddr").hide();
+            $(".apply_counaddr").hide();
+            1
+        })
+        $(".apply_range").change(function () {
+            var name = $(this).val();
+            console.log(name);
+            if (name=="国内") {
+                $(".apply_proaddr").show();
+                $(".apply_counaddr").hide();
+            } else if (name=="国外") {
+                $(".apply_proaddr").hide();
+                $(".apply_counaddr").show ();
+            } else if (name=="请选择") {
+                $(".apply_proaddr").hide();
+                $(".apply_counaddr").hide();
+            } 
+        })
+    </script>
+</body>
+</html>

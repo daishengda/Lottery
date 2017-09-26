@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>服务统计</title>
+    <link href="css/themes/default/easyui.css" rel="stylesheet" />
+    <link href="css/themes/icon.css" rel="stylesheet" />
+    <link href="css/themes/color.css" rel="stylesheet" />
+    <script src="script/jquery.min.js"></script>
+    <script src="script/jquery.easyui.min.js"></script>
+    <script src="script/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#bill').dialog('close');
+            $('#sta').dialog('close');
+            loadData();
+            $("#btnSerach").click(function () {
+                var pars = {
+                    CreationUser: $("#CreationUser").val(),
+                    CreationTime: $("#CreationTime").val(),
+                    EndCreationTime: $("#EndTime").val(),
+                    group: $("#group").val(),
+                    FedexSatu: $("#FedexSatu").val(),
+
+                };
+                loadData(pars);
+            });
+            $("#btn_bill").click(function () {
+                bill();
+            });
+            $("#ok").click(function () {
+                afterbill();
+            });
+            $("#btn_sta").click(function(){
+                statistics();
+            });
+        });
+        function loadData(pars) {
+            $('#date').datagrid({
+                url: '',
+                //width: 1000,
+                //height: 400,
+                width: ($(window).width() * 0.90),
+                height: ($(window).height() * 0.80),
+                fitColumns: true, //列自适应
+                nowrap: false,
+                idField: 'Id',//主键列的列名
+                loadMsg: '正在加载信息...',
+                pagination: true,//是否有分页
+                singleSelect: false,//是否单行选择
+                pageSize: 10,//每页多少条数据
+                pageNumber: 1,//默认的页
+                pageList: [10, 20, 30],
+                queryParams: pars,//往后台传递参数
+                columns: [[
+                    { field: 'ck', checkbox: true, align: 'left', width: 30 },
+                    {
+                        field: 'CreationTime', title: '申请时间', width: 100, align: 'center',
+                        formatter: function (value, row, index) {
+                            return (eval(value.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-M-d");
+                        }
+                    },
+                    { field: 'CreateUser', title: '申请人', align: 'center', width: 100 },
+                    { field: 'group', title: '申请部门', align: 'center', width: 100 },
+                      { field: 'FedexStatu', title: '快递状态', align: 'center', width: 100 },
+                      { field: 'FedexNo', title: '快递单号', align: 'center', width: 100 },
+                      { field: 'FedexCost', title: '费用确认', align: 'center', width: 100 },
+                      {
+                          field: 'operation', title: '操作', align: 'center', width: 100,
+                          formatter: function (value, row, index) {
+                              var str = "";
+                              str += '<a href="javascript:view(\'' + Id + '\');" class="easyui-linkbutton c4" tyle="width:50px" >查看</a>';
+                              return str;
+                          }
+                      }
+                ]],
+                //toolbar: [{
+                //    id: 'btnAdd',
+                //    text: '添加',
+                //    iconCls: 'icon-add',
+                //    handler: function () {
+
+                //    }
+                //}],
+            });
+        }
+
+        //统计
+        function bill() {
+            $('#bill').dialog('open');
+        }
+        function afterbill() {
+            $('#bill').dialog('close');
+            $('#date').datagrid('reload');
+        }
+
+        function statistics(){
+            $('#sta').dialog('open');
+        };
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+            overflow-y: hidden;
+        }
+
+        input {
+            width: 100px;
+        }
+
+        select {
+            width: 104px;
+        }
+
+        #sec {
+            /*border:1px solid #0094ff;*/
+            width: 700px;
+        }
+
+            #sec td {
+                width: 100px;
+                height: 20px;
+                text-align: right;
+            }
+        #sta_t{width:700px; border:1px solid #0094ff; border-collapse:collapse;}
+        #sta_t td{width:100px;height:30px; text-align:center; border:1px solid #0094ff;}
+    </style>
+</head>
+<body>
+
+
+    <div>
+        <table id="sec">
+            <tr>
+                <td>开始时间:</td>
+                <td><input type="datetime" id="CreationTime" class="easyui-datebox" /></td>
+                <td>结束时间:</td>
+                <td><input type="datetime" id="EndTime" class="easyui-datebox" /></td>
+                <td>申请人:</td>
+                <td><input type="text" id="CreationUser" class="easyui-textbox" /></td>
+            </tr>
+            <tr>
+                <td>申请部门:</td>
+                <td>
+                    <select id="group" class="easyui-combobox">
+                        <option>请选择</option>
+                    </select>
+                </td>
+                <td>快递状态:</td>
+                <td>
+                    <select id="FedexSatu" class="easyui-combobox">
+                        <option>请选择</option>
+                        <option value="1">待审批</option>
+                        <option value="2">已审批</option>
+                        <option value="3">已发送</option>
+                        <option value="4">待修改</option>
+                    </select>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" id="btnSerach" class="easyui-linkbutton c1" style="width:70px">查询</a>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" id="btn_bill" class="easyui-linkbutton c5" style="width:70px">费用确认</a>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" id="btn_sta" class="easyui-linkbutton c8" style="width:70px">统计</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table id="date"></table>
+    <div id="bill" class="easyui-dialog" title="费用确认" style="width:30%;height:400px;max-width:800px;padding:10px" data-options="
+			iconCls:'icon-save',
+            modal: true,
+			onResize:function(){
+				$(this).dialog('center');
+			}">
+        <div class="easyui-panel" fit="true">
+            <div style="padding:60px 40px 50px 40px">
+
+                <table cellpadding="5">
+                    <tr>
+                        <td>快递数量:</td>
+                        <td><input class="easyui-textbox" type="text" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>开始时间:</td>
+                        <td><input class="easyui-textbox" type="text" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>结束时间:</td>
+                        <td><input class="easyui-textbox" type="text" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>费用:</td>
+                        <td><input class="easyui-textbox" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:void(0)" id="ok" class="easyui-linkbutton c1" style="width:70px">确定</a></td>
+                        <td><a href="javascript:void(0)" onclick="afterbill()" id="close" class="easyui-linkbutton c5" style="width:70px">取消</a></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="sta" class="easyui-dialog" title="统计" style="width:80%;height:300px;max-width:800px;padding:30px" data-options="
+			iconCls:'icon-save',
+            modal: true,
+			onResize:function(){
+				$(this).dialog('center');
+			}">
+        <h3>2016-03-13至2016-04-22数量统计</h3>
+        <table id="sta_t">            
+            <tr>
+                <td>部门1</td>
+                <td>部门2</td>    
+                <td>部门3</td>
+                <td>部门4</td>
+                <td>部门5</td>
+                <td>数量</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>11</td>
+                <td>9</td>
+                <td>20</td>
+                <td>17</td>
+                <td>67</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

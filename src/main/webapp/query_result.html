@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>申请记录</title>
+    <link href="css/themes/default/easyui.css" rel="stylesheet" />
+    <link href="css/themes/icon.css" rel="stylesheet" />
+    <link href="css/themes/color.css" rel="stylesheet" />
+    <style>
+        body{
+            font-size:12px;
+            overflow-y:hidden;
+        }
+        input{
+            width:100px;            
+        }
+        select{
+            width:104px;
+        }
+        #sec{
+            /*border:1px solid #0094ff;*/
+            width:75%;
+            margin: 20px 0px 20px 0px;
+        }
+        #sec td{
+            width:100px;
+            height:20px;
+            text-align:right
+        }
+    </style>
+</head>
+<body >
+
+
+    <div>
+        <table id="sec">
+            <tr>
+            	<td>开始序列号:</td>
+                <td><input type="text" class="easyui-textbox" id="startStage" name="startStage" value="" /></td>
+                
+                <td>结束序列号:</td>
+                <td><input type="text" class="easyui-textbox" id="endStage" name="endStage" value="" /></td>
+                
+                <td>预测期数:</td>
+                <td>
+                    <input name="forecastStage"id="forecastStage">
+                </td>
+                 <td>
+                    <a href="javascript:void(0)" id="btnSerach" class="easyui-linkbutton c1" style="width:70px">查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="pp" style="background:#efefef;border:1px solid #ccc;width:91.2%"></div>
+    <table id="tableResult" >
+    </table>
+</body>
+ <script src="script/jquery.min.js"></script>
+ <script src="script/jquery.easyui.min.js"></script>
+ <script src="script/easyui-lang-zh_CN.js"></script>
+ <script src="script/common.js"></script>
+ <script src="script/query/query_result.js"></script>
+</html>

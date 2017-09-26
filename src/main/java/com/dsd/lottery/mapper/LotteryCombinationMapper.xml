@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="LotteryCombinationMapper">
+	<resultMap type="lotteryCombination" id="LotteryCombinationMap">
+		<id property="id" column="id" />
+		<result property="left" column="left" />
+		<result property="right" column="right" />
+	</resultMap>
+	
+	<!-- 批量插入 -->
+	<insert id="insertBatchCombination" parameterType="list">
+		 insert into tbl_lottery_combination(`left`,`right`) values
+		 <foreach collection="list" item="item" index="index" separator=",">
+		 	(#{item.left},#{item.right})
+		 </foreach>
+	</insert>
+	
+	<select id="queryCombination" resultMap="LotteryCombinationMap" parameterType="map">
+		select * from tbl_lottery_combination
+		<if test="offset != null and rows !=null">
+			limit #{offset},#{rows}
+		</if>
+	</select>
+	
+	<select id="queryCombinationCount" resultType="long">
+		select count(1) from tbl_lottery_combination
+	</select>
+	
+	<update id="updateStatus" parameterType="lotteryCombination">
+		update tbl_lottery_combination set `status` = #{status} where `left`=#{left};		
+	</update>
+	
+	<delete id="deleteCombination">
+		TRUNCATE tbl_lottery_combination;
+	</delete>
+</mapper>

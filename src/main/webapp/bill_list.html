@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>账单记录</title>
+    <link href="css/themes/default/easyui.css" rel="stylesheet" />
+    <link href="css/themes/icon.css" rel="stylesheet" />
+    <link href="css/themes/color.css" rel="stylesheet" />
+    <script src="script/jquery.min.js"></script>
+    <script src="script/jquery.easyui.min.js"></script>
+    <script src="script/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            loadData();
+            $("#btnSerach").click(function () {
+                var pars = {
+                    
+
+                };
+                loadData(pars);
+            });
+        });
+        function loadData(pars) {
+            $('#date').datagrid({
+                url: '',
+                //width: 1000,
+                //height: 400,
+                width: ($(window).width() * 0.90),
+                height: ($(window).height() * 0.80),
+                fitColumns: true, //列自适应
+                nowrap: false,
+                idField: 'Id',//主键列的列名
+                loadMsg: '正在加载信息...',
+                pagination: true,//是否有分页
+                //singleSelect: false,//是否单行选择
+                pageSize: 10,//每页多少条数据
+                pageNumber: 1,//默认的页
+                pageList: [10, 20, 30],
+                queryParams: pars,//往后台传递参数
+                columns: [[
+                    //{ field: 'ck', checkbox: true, align: 'left', width: 30 },
+                    {
+                        field: 'CreationTime', title: '申请时间', width: 100, align: 'center',
+                        formatter: function (value, row, index) {
+                            return (eval(value.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-M-d");
+                        }
+                    },
+                    { field: 'CreateUser', title: '申请人', align: 'center', width: 100 },
+                    { field: 'group', title: '申请部门', align: 'center', width: 100 },
+                      { field: 'FedexType', title: '快递类型', align: 'center', width: 100 },
+                      {
+                          field: 'operation', title: '操作', align: 'center', width: 100,
+                          formatter: function (value, row, index) {
+                              var str = "";
+                              str += '<a href="javascript:view(\'' + Id + '\');" class="easyui-linkbutton c4" tyle="width:50px" >查看</a>';
+                              return str;
+                          }
+                      }
+                ]],
+                //toolbar: [{
+                //    id: 'btnAdd',
+                //    text: '添加',
+                //    iconCls: 'icon-add',
+                //    handler: function () {
+
+                //    }
+                //}],
+            });
+        }
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+            overflow-y: hidden;
+        }
+
+        input {
+            width: 100px;
+        }
+
+        select {
+            width: 104px;
+        }
+
+        #sec {
+            /*border:1px solid #0094ff;*/
+            width: 600px;
+        }
+
+            #sec td {
+                width: 100px;
+                height: 20px;
+                text-align: right;
+            }
+    </style>
+</head>
+<body>
+
+
+    <div>
+        <table id="sec">
+            <tr>
+                <td>年度:</td>
+                <td>
+                    <select class="easyui-combobox">
+                        <option>请选择</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                    </select>
+                </td>
+                <td>结算阶段:</td>
+                <td>
+                    <select class="easyui-combobox" style="width:200px;">
+                        <option>请选择</option>
+                        <option value="1">2016-03-01至2016-04-01</option>
+                        <option value="2">2016-04-01至2016-05-01</option>
+                        <option value="3">2016-05-01至2016-06-01</option>
+                    </select>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" id="btnSerach" class="easyui-linkbutton c1" style="width:70px">查询</a>
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+    <table id="date"></table>
+</body>
+</html>
