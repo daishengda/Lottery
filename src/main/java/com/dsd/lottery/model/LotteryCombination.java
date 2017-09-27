@@ -65,4 +65,10 @@ public class LotteryCombination {
 	public void setRight(String right) {
 		this.right = right;
 	}
+
+	@Override
+	public String toString() {
+		return "LotteryCombination [id=" + id + ", left=" + left + ", right="
+				+ right + ", status=" + status + "]";
+	}
 }

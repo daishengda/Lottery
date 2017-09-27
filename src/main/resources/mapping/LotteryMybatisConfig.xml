@@ -50,6 +50,10 @@
 		<!-- 252组合模型 -->
 		<typeAlias alias="lotteryCombination" type="com.dsd.lottery.model.LotteryCombination"/>
 		<typeAlias alias="lotteryModel" type="com.dsd.lottery.model.LotteryModel"/>
+		
+		<!-- 遗漏算法 -->
+		<typeAlias alias="MissGroupModel" type="com.dsd.lottery.model.miss.MissGroupModel"/>
+		<typeAlias alias="MissResultModel" type="com.dsd.lottery.model.miss.MissResultModel"/>
 	</typeAliases>
 	
 	<mappers>
@@ -57,5 +61,6 @@
 		<mapper resource="com/dsd/lottery/mapper/DynamicSqlMapper.xml" />
 		<mapper resource="com/dsd/lottery/mapper/LotteryCombinationMapper.xml" />
 		<mapper resource="com/dsd/lottery/mapper/LotteryRecordMapper.xml" />
+		<mapper resource="com/dsd/lottery/mapper/LotteryMissMapper.xml" />
 	</mappers>
 </configuration>

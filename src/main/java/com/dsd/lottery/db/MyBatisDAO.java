@@ -42,7 +42,7 @@ public class MyBatisDAO extends SqlSessionDaoSupport {
 	/**
 	 * 错误代码
 	 */
-	private final int errorCode = -1;
+	public static final int ERROR_CODE = -1;
 
 	/**
 	 * 根据参数获取多条数据
@@ -360,26 +360,26 @@ public class MyBatisDAO extends SqlSessionDaoSupport {
 	public int delete(String key) {
 		if (StringUtils.isEmpty(key)) {
 			logger.warn("key is empty!");
-			return errorCode;
+			return ERROR_CODE;
 		}
 		try {
 			return this.getSqlSession().delete(key);
 		} catch (Exception e) {
 			logger.error("delete",String.format("delete %s is faied", key), e);
-			return errorCode;
+			return ERROR_CODE;
 		}
 	}
 
 	public int delete(String key, Object params) {
 		if (StringUtils.isEmpty(key)) {
 			logger.warn("key is empty!");
-			return errorCode;
+			return ERROR_CODE;
 		}
 		try {
 			return this.getSqlSession().delete(key, params);
 		} catch (Exception e) {
 			logger.error("delete",String.format("delete %s is faied", key), e);
-			return errorCode;
+			return ERROR_CODE;
 		}
 	}
 	

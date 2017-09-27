@@ -6,15 +6,17 @@ public class DigitUtil {
 
 	/**
 	 * 位数转换描述
+	 * 
 	 * @param num
 	 * @return
 	 */
 	public static String convertUnit(Integer num) {
 		return convertUnit(num, "位");
 	}
-	
+
 	/**
 	 * 位数转换描述
+	 * 
 	 * @param num
 	 * @return
 	 */
@@ -43,23 +45,45 @@ public class DigitUtil {
 		info += desc;
 		return info;
 	}
-	
+
 	/**
 	 * 根据字符串的数字部分进行合并，转换为long，方便排序
+	 * 
 	 * @param number
 	 * @return
 	 */
 	public static long convertNumber(String str) {
 		StringBuilder sortid = new StringBuilder();
 		String temp;
-		for(int i = 0;i< str.length();i++)
-		{
-			temp = str.substring(i, i+1);
-			if(NumberUtils.isNumber(temp))
-			{
+		for (int i = 0; i < str.length(); i++) {
+			temp = str.substring(i, i + 1);
+			if (NumberUtils.isNumber(temp)) {
 				sortid.append(temp);
 			}
 		}
 		return Long.parseLong(sortid.toString());
+	}
+
+	/**
+	 * 判断开奖号码是否包含在组合中
+	 * 
+	 * @param digit
+	 *            位数
+	 * @param group
+	 *            组合
+	 * @param lotteryNumber
+	 *            彩票号码
+	 * @return
+	 */
+	public static boolean isContain(int digit, String group,
+			String lotteryNumber) {
+		for (int i = 0; i < lotteryNumber.length(); i++) {
+			if (group.contains(String.valueOf(lotteryNumber.charAt(i)))) {
+				if (--digit == 0) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

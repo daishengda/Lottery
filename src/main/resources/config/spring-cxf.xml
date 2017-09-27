@@ -22,6 +22,8 @@
 	
 	<bean id="WSExcelService" class="com.dsd.lottery.ws.WSExcelService" />
 	
+	<bean id="WSMissService" class="com.dsd.lottery.ws.WSMissService" />
+	
 	<!-- 日志输入拦截器 -->
 	<bean id="inMessageInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
 	
@@ -45,6 +47,7 @@
 		<jaxrs:serviceBeans>
 			<ref bean="WSFileService" />
 			<ref bean="WSExcelService" />
+			<ref bean="WSMissService" />
 		</jaxrs:serviceBeans>
 		
 		<jaxrs:providers>

@@ -9,19 +9,21 @@ import com.dsd.lottery.util.log.LogUtil;
 
 /**
  * 算法工具类
+ * 
  * @author daishengda
  *
  */
 public class AlgorithmUtil {
-	
+
 	private List<LotteryCombination> list;
-	
+
 	public AlgorithmUtil() {
 		this.list = new ArrayList<LotteryCombination>();
 	}
 
 	/**
 	 * 计算阶乘数，即n! = n * (n-1) * ... * 2 * 1
+	 * 
 	 * @param n
 	 * @return
 	 */
@@ -31,6 +33,7 @@ public class AlgorithmUtil {
 
 	/**
 	 * 计算排列数，即A(n, m) = n!/(n-m)!
+	 * 
 	 * @param n
 	 * @param m
 	 * @return
@@ -41,6 +44,7 @@ public class AlgorithmUtil {
 
 	/**
 	 * 计算组合数，即C(n, m) = n!/((n-m)! * m!)
+	 * 
 	 * @param n
 	 * @param m
 	 * @return
@@ -49,37 +53,47 @@ public class AlgorithmUtil {
 		return (n >= m) ? factorial(n) / factorial(n - m) / factorial(m) : 0;
 	}
 
-	
 	/**
 	 * 组合选择（从列表中选择n个组合）
-	 * @param dataList 待选列表
-	 * @param n 选择个数
-	 * @return 
+	 * 
+	 * @param dataList
+	 *            待选列表
+	 * @param n
+	 *            选择个数
+	 * @return
 	 */
-	public List<LotteryCombination> combinationSelect(List<String> dataList, int n) {
-		LogUtil.info(String.format("C(%d, %d) = %d", dataList.size(), n, combination(dataList.size(), n)));
+	public List<LotteryCombination> combinationSelect(List<String> dataList,
+			int n) {
+		LogUtil.info(String.format("C(%d, %d) = %d", dataList.size(), n,
+				combination(dataList.size(), n)));
 		combinationSelect(dataList, 0, new String[n], 0);
 		return list;
 	}
 
 	/**
 	 * 组合选择
-	 * @param dataList 待选列表
-	 * @param dataIndex 待选开始索引
-	 * @param resultList 前面（resultIndex-1）个的组合结果
-	 * @param resultIndex 选择索引，从0开始
+	 * 
+	 * @param dataList
+	 *            待选列表
+	 * @param dataIndex
+	 *            待选开始索引
+	 * @param resultList
+	 *            前面（resultIndex-1）个的组合结果
+	 * @param resultIndex
+	 *            选择索引，从0开始
 	 */
-	private void combinationSelect(List<String> dataList, int dataIndex, String[] resultList, int resultIndex) {
+	private void combinationSelect(List<String> dataList, int dataIndex,
+			String[] resultList, int resultIndex) {
 		int resultLen = resultList.length;
 		int resultCount = resultIndex + 1;
 		if (resultCount > resultLen) { // 全部选择完时，输出组合结果
 			StringBuilder left = new StringBuilder();
 			StringBuilder right = new StringBuilder();
-			for(String result : resultList){
+			for (String result : resultList) {
 				left.append(result);
 			}
-			for(String data:dataList){
-				if(left.indexOf(data)<0){
+			for (String data : dataList) {
+				if (left.indexOf(data) < 0) {
 					right.append(data);
 				}
 			}
@@ -95,7 +109,14 @@ public class AlgorithmUtil {
 	}
 
 	public static void main(String[] args) {
-//		 new AlgorithmUtil().combinationSelect(Arrays.asList("0", "1", "2", "3", "4", "5","6","7","8","9"),5); 
-		 new AlgorithmUtil().combinationSelect(Arrays.asList("0", "1", "2", "4", "4"),3); 
+		// new AlgorithmUtil().combinationSelect(Arrays.asList("0", "1", "2",
+		// "3", "4", "5","6","7","8","9"),5);
+		List<LotteryCombination> result = new AlgorithmUtil()
+				.combinationSelect(Arrays.asList("0", "1", "2", "3", "4", "5",
+						"6", "7", "8", "9"), 5);
+		for (LotteryCombination lottery : result) {
+			System.out.println(lottery.toString());
+		}
+
 	}
 }
