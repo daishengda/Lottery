@@ -13,6 +13,9 @@ public class MissGroupModel {
 	
 	private String group;
 
+	public MissGroupModel() {
+	}
+
 	public MissGroupModel(int digit, String group) {
 		this.digit = digit;
 		this.group = group;

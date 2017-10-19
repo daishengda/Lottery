@@ -16,4 +16,9 @@ public interface IMissAnalyse {
 	 * 删除遗漏组合数据
 	 */
 	boolean deleteMissGroup();
+	
+	/**
+	 * 保存遗漏分析结果
+	 */
+	void saveMissResult();
 }

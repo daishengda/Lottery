@@ -15,9 +15,38 @@
 		 </foreach>
 	</insert>
 	
+		<!-- 批量插入 -->
+	<insert id="insertBatchMissResult" parameterType="list">
+		 insert into tbl_lottery_miss_result(`id`,`begin`,`end`,`miss_periods`,`type`,`digit`) values
+		 <foreach collection="list" item="item" index="index" separator=",">
+		 	(#{item.id},#{item.begin},#{item.end},#{item.missPeriods},#{item.type},#{item.digit})
+		 </foreach>
+	</insert>
+	
+		<!-- 批量插入 -->
+	<insert id="insertBatchMissRelation" parameterType="list">
+		 insert into tbl_lottery_miss_relation(`group_id`,`result_id`) values
+		 <foreach collection="list" item="item" index="index" separator=",">
+		 	(#{item.groupId},#{item.resultId})
+		 </foreach>
+	</insert>
+	
 	<delete id="deleteMissGroup">
 		TRUNCATE tbl_lottery_miss_group;
 	</delete>
+	
+	<delete id="deleteMissResult">
+		TRUNCATE tbl_lottery_miss_relation;
+		TRUNCATE tbl_lottery_miss_result;
+	</delete>
+	
+	<select id="queryMissGroup" resultMap="MissGroupModelMap" parameterType="map">
+		select * from tbl_lottery_miss_group
+		where 1 = 1
+		<if test="digit != null">
+			and digit = #{digit}
+		</if>
+	</select>
 <!-- 	
 	<select id="queryCombination" resultMap="LotteryCombinationMap" parameterType="map">
 		select * from tbl_lottery_combination

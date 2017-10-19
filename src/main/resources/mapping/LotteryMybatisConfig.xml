@@ -54,6 +54,7 @@
 		<!-- 遗漏算法 -->
 		<typeAlias alias="MissGroupModel" type="com.dsd.lottery.model.miss.MissGroupModel"/>
 		<typeAlias alias="MissResultModel" type="com.dsd.lottery.model.miss.MissResultModel"/>
+		<typeAlias alias="MissRelationModel" type="com.dsd.lottery.model.miss.MissRelationModel"/>
 	</typeAliases>
 	
 	<mappers>

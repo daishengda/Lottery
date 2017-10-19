@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import com.dsd.lottery.db.MyBatisDAO;
 import com.dsd.lottery.enums.EnumMissGroup;
 import com.dsd.lottery.missanalyse.IMissAnalyse;
+import com.dsd.lottery.missanalyse.task.MissMasterTask;
 import com.dsd.lottery.model.LotteryCombination;
 import com.dsd.lottery.model.miss.MissGroupModel;
 import com.dsd.lottery.util.AlgorithmUtil;
+import com.dsd.lottery.util.log.LogUtil;
 
 /**
  * 遗漏解析算法实现类
@@ -49,6 +51,18 @@ public class MissAnalyseImpl implements IMissAnalyse {
 	public boolean deleteMissGroup() {
 		int code = myBatisDAO.delete("LotteryMissMapper.deleteMissGroup");
 		return MyBatisDAO.ERROR_CODE != code;
+	}
+
+	@Override
+	public void saveMissResult() {
+		MissMasterTask task = new MissMasterTask(myBatisDAO);
+		Thread thread = new Thread(task);
+		thread.start();
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			LogUtil.error("saveMissResult MissGroup faild!",e);
+		}
 	}
 
 }

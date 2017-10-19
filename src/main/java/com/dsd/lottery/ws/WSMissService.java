@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -47,6 +48,26 @@ public class WSMissService {
 			LogUtil.error("delete MissGroup faild!");
 		}
 		LogUtil.info("end saveMissGroup!");
+		return map;
+	}
+	
+	/**
+	 * 保存遗漏组合(包括2、3、4、5位所有组合)
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@GET
+	@Path("/saveMissResult")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Map<String, Object> saveMissResult(@Context HttpServletRequest request) {
+		LogUtil.info("start saveMissResult!");
+		long start = System.currentTimeMillis();
+		Map<String, Object> map = new HashMap<String, Object>();
+		missAnalyse.saveMissResult();
+		map.put("status", true);
+		long end = System.currentTimeMillis();
+		LogUtil.info("end saveMissResult!耗时："+((end-start)/1000)+"秒");
 		return map;
 	}
 }

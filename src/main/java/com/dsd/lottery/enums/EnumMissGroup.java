@@ -1,5 +1,6 @@
 package com.dsd.lottery.enums;
 
+
 /**
  * 遗漏算法组合
  * 
@@ -24,5 +25,29 @@ public enum EnumMissGroup {
 
 	public int getDigit() {
 		return digit;
+	}
+	
+	public static EnumMissGroup getEnumMissGroup(int digit)
+	{
+		EnumMissGroup[] values = EnumMissGroup.values();
+		for (EnumMissGroup enumMissGroup : values) {
+			if(enumMissGroup.digit == digit)
+			{
+				return enumMissGroup;
+			}
+		}
+		return EnumMissGroup.TWO_GROUP;
+	}
+
+	public int[] getMatch() {
+		int digitTemp = this.getDigit();
+		int index = 2;
+		int size = digitTemp - index + 1;
+		int[] match = new int[size];
+		int i = 0;
+		for (; index <= digitTemp; index++) {
+			match[i++] = index;
+		}
+		return match;
 	}
 }

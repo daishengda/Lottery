@@ -12,6 +12,8 @@ public class PropertiesConst {
 	
 	public static final String MAX_EXCEL_THREAD_NUM = "MAX_EXCEL_THREAD_NUM";
 	
+	public static final String MAX_MISS_THREAD_NUM = "MAX_MISS_THREAD_NUM";
+	
 	public static final String CLEAN_DATA_TIME = "CLEAN_DATA_TIME";
 	
 	public static final String CLEAN_SWITCH = "CLEAN_SWITCH";
