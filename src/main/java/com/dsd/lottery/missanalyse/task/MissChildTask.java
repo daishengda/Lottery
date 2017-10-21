@@ -67,9 +67,9 @@ public class MissChildTask implements Runnable {
 		long[] longArrays = buildLongArrays(intArrays);
 		long currentId = atomic.incrementAndGet();
 		long maxId = atomic.incrementAndGet();
-		missResultList.add(new MissResultModel(currentId, longArrays[0],
-				longArrays[3], intArrays[1], type, digit));
-		missResultList.add(new MissResultModel(maxId, longArrays[2],
+		missResultList.add(new MissResultModel(currentId, longArrays[2],
+				-1L, intArrays[1], type, digit));
+		missResultList.add(new MissResultModel(maxId, longArrays[0],
 				longArrays[1], intArrays[0], type, digit));
 		relationLst.add(new MissRelationModel(missGroup.getId(), currentId));
 		relationLst.add(new MissRelationModel(missGroup.getId(), maxId));
