@@ -6,7 +6,7 @@ import com.dsd.lottery.forecast.model.QueryResult;
 import com.dsd.lottery.model.LotteryModel;
 import com.dsd.lottery.model.StorageModel;
 import com.dsd.lottery.strategy.IStrategy;
-import com.dsd.lottery.strategy.impl.CombinationStrategy;
+import com.dsd.lottery.strategy.impl.NewCombinationStrategy;
 
 /**
  * 生产者
@@ -36,7 +36,7 @@ public class ProducerThread implements Runnable {
 		this.left = left;
 		this.right = right;
 		this.stage = stage;
-		iStrategy = new CombinationStrategy();
+		iStrategy = new NewCombinationStrategy();
 	}
 
 	@Override

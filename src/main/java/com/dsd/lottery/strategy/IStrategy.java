@@ -2,6 +2,7 @@ package com.dsd.lottery.strategy;
 
 import java.util.List;
 
+import com.dsd.lottery.forecast.model.QueryResult;
 import com.dsd.lottery.model.LotteryModel;
 import com.dsd.lottery.model.StorageModel;
 
@@ -15,5 +16,5 @@ public interface IStrategy {
 	/**
 	 * 策略接口
 	 */
-	void operate(List<LotteryModel> lotteryList,StorageModel storage,char[][] charArrays,String left,String right,int stage);
+	void operate(List<LotteryModel> lotteryList,StorageModel<QueryResult> storage,char[][] charArrays,String left,String right,int stage);
 }

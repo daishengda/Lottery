@@ -19,7 +19,7 @@ import com.dsd.lottery.util.log.LogUtil;
 public class CombinationStrategy implements IStrategy {
 
 	@Override
-	public void operate(List<LotteryModel> lotteryList,StorageModel storage, char[][] charArrays,String left,String right,int stage) {
+	public void operate(List<LotteryModel> lotteryList,StorageModel<QueryResult> storage, char[][] charArrays,String left,String right,int stage) {
 		int size = lotteryList.size();
 		try {
 			for(int i = 0;i < size;i++)
@@ -35,7 +35,7 @@ public class CombinationStrategy implements IStrategy {
 
 	}
 
-	private void splitContrast(List<LotteryModel> lotteryList,StorageModel storage, int index, int stage,
+	private void splitContrast(List<LotteryModel> lotteryList,StorageModel<QueryResult> storage, int index, int stage,
 			char[][] charArrays, String left, String right) throws InterruptedException {
 		char codeChar;
 		String code;

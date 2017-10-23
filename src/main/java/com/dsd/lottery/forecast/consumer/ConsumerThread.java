@@ -128,8 +128,7 @@ public class ConsumerThread implements Runnable {
 				for(QueryResult query : list)
 				{
 					desc = ResourceUtil.format(LotteryConst.GROUP_FORMAT,
-							query.getLeft(), query.getRight(),
-							DigitUtil.convertUnit(query.getDigit()));
+							query.getLeft(), query.getRight());
 					groupDesc.append(desc+" ");
 				}
 				for(LotteryModel model : lotteryList)

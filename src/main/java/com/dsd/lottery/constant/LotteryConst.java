@@ -54,11 +54,18 @@ public class LotteryConst {
 	public static final int QUERY_LOOP_NUMBER = 5;
 	
 	/** 所属组合描述格式***/
-	public static final String GROUP_FORMAT = "{0}-{1}({2})";
+	public static final String GROUP_FORMAT = "{0}-{1}";
 	
 	/** 对序列号number的字符进行替换***/
 	public static final String REPLACE_CHARACTER = "-";
 	
 	/**创建数据库语句**/
 	public static final String CREATE_SCHEMA = "CREATE DATABASE IF NOT EXISTS %s;";
+	
+	/**遗漏表格动态列名(最大遗漏)**/
+	public static final String MAX_MISS_COLUMN_NAME = "最大遗漏(期间,{0}直选)";
+	
+	/**遗漏表格动态列名(本期遗漏)**/
+	public static final String CURRENT_MISS_COLUMN_NAME = "本期遗漏(期间,{0}直选)";
+
 }

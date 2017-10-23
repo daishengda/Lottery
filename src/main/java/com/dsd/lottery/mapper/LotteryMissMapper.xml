@@ -7,6 +7,20 @@
 		<result property="group" column="group" />
 	</resultMap>
 	
+	<resultMap type="MissRelationModel" id="MissRelationModelMap">
+		<result property="groupId" column="group_id" />
+		<result property="resultId" column="result_id" />
+	</resultMap>
+	
+	<resultMap type="MissResultModel" id="MissResultModelMap">
+		<id property="id" column="id" />
+		<result property="begin" column="begin" />
+		<result property="end" column="end" />
+		<result property="missPeriods" column="miss_periods" />
+		<result property="type" column="type" />
+		<result property="digit" column="digit" />
+	</resultMap>
+	
 	<!-- 批量插入 -->
 	<insert id="insertBatchMissGroup" parameterType="list">
 		 insert into tbl_lottery_miss_group(`digit`,`group`) values
@@ -47,21 +61,26 @@
 			and digit = #{digit}
 		</if>
 	</select>
-<!-- 	
-	<select id="queryCombination" resultMap="LotteryCombinationMap" parameterType="map">
-		select * from tbl_lottery_combination
-		<if test="offset != null and rows !=null">
-			limit #{offset},#{rows}
+	
+	<select id="queryMissRelation" resultMap="MissRelationModelMap" parameterType="map">
+		select * from tbl_lottery_miss_relation
+		where 1 = 1
+		<if test="groupIds != null and groupIds.size()>0">
+			and group_id in
+			<foreach collection="groupIds" item="item" index="index" open="(" separator="," close=")">
+				#{item}
+			</foreach>
 		</if>
 	</select>
 	
-	<select id="queryCombinationCount" resultType="long">
-		select count(1) from tbl_lottery_combination
+	<select id="queryMissResult" resultMap="MissResultModelMap" parameterType="map">
+		select * from tbl_lottery_miss_result
+		where 1 = 1
+		<if test="ids != null and ids.size()>0">
+			and id in
+			<foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
 	</select>
-	
-	<update id="updateStatus" parameterType="lotteryCombination">
-		update tbl_lottery_combination set `status` = #{status} where `left`=#{left};		
-	</update>
-	
- -->
 </mapper>
