@@ -88,7 +88,8 @@ function loadForecastStage(){
 function loadData(loadData) {
 	var stage = $("#forecastStage").combobox('getValue');
     $('#tableResult').datagrid({
-    	data:loadData,        width: ($(window).width()*0.90), 
+    	data:loadData,        
+    	width: ($(window).width()*0.90), 
         height:($(window).height()*0.83)-100, 
         fitColumns: true, //列自适应
         nowrap: false,

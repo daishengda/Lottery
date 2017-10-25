@@ -111,7 +111,7 @@ public class MissAnalyseImpl implements IMissAnalyse {
 			List<Long> ids = groupIdMap.get(missGroup.getId());
 			for (Long resultId : ids) {
 				MissResultModel result = missResultMap.get(resultId);
-				String desc = Long.compare(result.getEnd(), -1L) == 0 ? ResourceUtil
+				String desc = Long.compare(result.getEnd(), 0L) == 0 ? ResourceUtil
 						.format(LotteryConst.CURRENT_MISS_COLUMN_NAME,
 								result.getType()) : ResourceUtil.format(
 						LotteryConst.MAX_MISS_COLUMN_NAME, result.getType());

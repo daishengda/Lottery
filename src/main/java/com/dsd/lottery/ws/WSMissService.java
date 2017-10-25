@@ -15,7 +15,6 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dsd.lottery.missanalyse.IMissAnalyse;
-import com.dsd.lottery.model.PageModel;
 import com.dsd.lottery.model.miss.MissInfoModel;
 import com.dsd.lottery.util.log.LogUtil;
 
@@ -84,13 +83,13 @@ public class WSMissService {
 	@GET
 	@Path("/queryMissResult")
 	@Produces(MediaType.APPLICATION_JSON)
-	public PageModel<MissInfoModel> queryMissResult(
+	public List<MissInfoModel> queryMissResult(
 			@Context HttpServletRequest request) {
 		LogUtil.info("start queryMissResult!");
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("digit", request.getParameter("digit"));
 		List<MissInfoModel> list = missAnalyse.queryMissInfo(param);
 		LogUtil.info("end queryMissResult!");
-		return new PageModel<MissInfoModel>(list.size(), list);
+		return list;
 	}
 }
