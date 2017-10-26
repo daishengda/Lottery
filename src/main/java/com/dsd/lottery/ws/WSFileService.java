@@ -1,7 +1,6 @@
 package com.dsd.lottery.ws;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dsd.lottery.constant.LotteryConst;
-import com.dsd.lottery.db.DBHolder;
 import com.dsd.lottery.db.MyBatisDAO;
 import com.dsd.lottery.model.GroupData;
 import com.dsd.lottery.model.LotteryCombination;
@@ -38,7 +36,6 @@ import com.dsd.lottery.util.AlgorithmUtil;
 import com.dsd.lottery.util.CloseUtil;
 import com.dsd.lottery.util.DigitUtil;
 import com.dsd.lottery.util.ResourceUtil;
-import com.dsd.lottery.util.SqlParse;
 import com.dsd.lottery.util.log.LogUtil;
 
 /**
@@ -287,29 +284,5 @@ public class WSFileService {
 		LogUtil.info(ResourceUtil.format(format,
 				(System.currentTimeMillis() - startTime) * 1d / 1000));
 		return resultList;
-	}
-
-	/**
-	 * 初始化数据库
-	 * 
-	 * @param request
-	 * @return
-	 */
-	@POST
-	@Path("/init")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Map<String, Object> init(@Context HttpServletRequest request) {
-		LogUtil.info("开始导入数据!");
-		Map<String, Object> map = new HashMap<String, Object>();
-		DBHolder.setDataSource("mysql");
-		myBatisDAO.excuteSQL(String.format(LotteryConst.CREATE_SCHEMA,
-				"lottery"));
-		DBHolder.setDataSource("common");
-		String path = this.getClass().getResource("/").getPath()
-				+ File.separator + "database" + File.separator
-				+ "create_sql.sql";
-		myBatisDAO.excuteSQL(SqlParse.loadSql(path));
-		map.put("status", true);
-		return map;
 	}
 }

@@ -1,6 +1,6 @@
 function initDB(){
 	$.ajax({
-	    url: 'rest/file/init',
+	    url: 'rest/upgrade/init',
 	    type: 'POST',
 	    cache: false,
 	    beforeSend: function () {
