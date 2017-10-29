@@ -87,6 +87,11 @@ public class MissAnalyseImpl implements IMissAnalyse {
 		paramObj.put("groupIds", groupIds);
 		List<MissRelationModel> missRelationList = myBatisDAO.selectList(
 				"LotteryMissMapper.queryMissRelation", paramObj);
+		List<MissInfoModel> missInfoList = new ArrayList<MissInfoModel>();
+		if(missRelationList.isEmpty())
+		{
+		    return missInfoList;
+		}
 		List<Long> resultIds = new ArrayList<Long>();
 		Map<Integer, List<Long>> groupIdMap = new HashMap<Integer, List<Long>>();
 		for (MissRelationModel missRelation : missRelationList) {
@@ -102,7 +107,6 @@ public class MissAnalyseImpl implements IMissAnalyse {
 		for (MissResultModel missResult : missResultList) {
 			missResultMap.put(missResult.getId(), missResult);
 		}
-		List<MissInfoModel> missInfoList = new ArrayList<MissInfoModel>();
 		MissInfoModel missInfo;
 		for (MissGroupModel missGroup : missGroupList) {
 			missInfo = new MissInfoModel();

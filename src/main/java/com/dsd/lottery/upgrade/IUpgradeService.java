@@ -18,4 +18,11 @@ public interface IUpgradeService {
 	 * @return
 	 */
 	boolean initDatabase();
+	
+	/**
+	 * 升级数据库
+	 * @param file
+	 * @return
+	 */
+	boolean upgradeDatabase(String file);
 }

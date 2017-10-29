@@ -24,7 +24,7 @@
 	
 	<bean id="WSMissService" class="com.dsd.lottery.ws.WSMissService" />
 	
-	<bean id="WSUpgradeService" class="com.dsd.lottery.ws.WSMissService" />
+	<bean id="WSUpgradeService" class="com.dsd.lottery.ws.WSUpgradeService" />
 	
 	<!-- 日志输入拦截器 -->
 	<bean id="inMessageInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor" />

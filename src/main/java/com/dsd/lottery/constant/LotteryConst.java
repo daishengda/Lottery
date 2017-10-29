@@ -6,6 +6,9 @@ package com.dsd.lottery.constant;
  *
  */
 public class LotteryConst {
+    
+    /** 数据库名称**/
+    public static final String DB_SCHEMA_NAME = "lottery";
 
 	/** 从个位到万位分割表,后面是tbl_lottery_combination对应的主键ID，分表**/
 	public static final String SPLIT_TABLE_NAME = "tbl_lottery_split_%s";
