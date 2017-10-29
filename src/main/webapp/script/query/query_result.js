@@ -69,7 +69,7 @@ function setOptionDiv(id,name){
 
 //加载下拉框
 function loadForecastStage(){
-	var startPeriods = 15;
+	var startPeriods = 8;
 	var endPeriods = 50;
 	var defaultPeriods = 25;
 	var data=[];
