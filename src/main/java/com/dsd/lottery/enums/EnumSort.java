@@ -1,29 +1,30 @@
 package com.dsd.lottery.enums;
 
 /**
- * Ë³Ðò
+ * Ë³ï¿½ï¿½
+ * 
  * @author daishengda
  *
  */
 public enum EnumSort {
 
-	/**
-	 * ÕýÐò
-	 */
-	ASC_SORT("asc"),
-	
-	/**
-	 *·´Ðò
-	 */
-	DESC_SORT("desc");
-	
-	private String sort;
+    /**
+     * ï¿½ï¿½ï¿½ï¿½
+     */
+    ASC_SORT("asc"),
 
-	private EnumSort(String sort) {
-		this.sort = sort;
-	}
+    /**
+     * ï¿½ï¿½ï¿½ï¿½
+     */
+    DESC_SORT("desc");
 
-	public String getSort() {
-		return sort;
-	}
+    private String sort;
+
+    private EnumSort(String sort) {
+        this.sort = sort;
+    }
+
+    public String getSort() {
+        return sort;
+    }
 }

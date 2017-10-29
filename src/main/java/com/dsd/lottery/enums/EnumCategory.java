@@ -2,13 +2,13 @@ package com.dsd.lottery.enums;
 
 public enum EnumCategory {
 
-	/**
-	 * Ç°20Êý¾Ý
-	 */
-	TOP_DATA,
-	
-	/**
-	 * ¶Ô±ÈÊý¾Ý
-	 */
-	CONTRAST_DATA;
+    /**
+     * Ç°20ï¿½ï¿½ï¿½
+     */
+    TOP_DATA,
+
+    /**
+     * ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
+     */
+    CONTRAST_DATA;
 }
