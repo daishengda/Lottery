@@ -19,7 +19,7 @@ $(function () {
 
 //加载下拉框
 function loadDropDownList(){
-	var arraysMap = {2:'二星组合',3:'三星组合',4:'四星组合',5:'五星组合'};
+	var arraysMap = {2:'组合2',3:'组合3',4:'组合4',5:'组合5'};
 	var defaultGroup = 2;
 	var data = [];
 	for(var key in arraysMap){

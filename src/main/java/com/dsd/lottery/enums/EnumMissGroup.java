@@ -9,9 +9,21 @@ package com.dsd.lottery.enums;
  */
 public enum EnumMissGroup {
 
-    TWO_GROUP(2),
+    TWO_GROUP(2) {
+        @Override
+        public int[] getMatch() {
+            //3是二星组三的情况，23至少出一次就算
+            return new int[]{2,3};
+        }
+    },
 
-    THREE_GROUP(3),
+    THREE_GROUP(3){
+        @Override
+        public int[] getMatch() {
+            //6是三星组6的情况，234至少出一次就算
+            return new int[]{2,3,6};
+        }
+    },
 
     FOUR_GROUP(4),
 

@@ -68,7 +68,13 @@ public class LotteryConst {
 	/**遗漏表格动态列名(最大遗漏)**/
 	public static final String MAX_MISS_COLUMN_NAME = "最大遗漏(期间,{0}直选)";
 	
+	   /**遗漏表格动态列名(最大遗漏)-完全匹配的**/
+    public static final String MAX_MISS_COLUMN_NAME_WHOLE = "最大遗漏(期间,{0}星组{1})";
+	
 	/**遗漏表格动态列名(本期遗漏)**/
 	public static final String CURRENT_MISS_COLUMN_NAME = "本期遗漏({0}直选)";
+	
+	   /**遗漏表格动态列名(本期遗漏)-完全匹配的**/
+    public static final String CURRENT_MISS_COLUMN_NAME_WHOLE = "本期遗漏({0}星组{1})";
 
 }

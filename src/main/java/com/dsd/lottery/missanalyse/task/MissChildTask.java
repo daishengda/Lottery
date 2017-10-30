@@ -80,8 +80,9 @@ public class MissChildTask implements Runnable {
 		// [0] 最大遗漏值,[1]往期当前遗漏值,[2]最大遗漏值出现的索引,[3]往期遗漏值出现的索引
 		int[] intArrays = new int[4];
 		for (int i = 0; i < size; i++) {
-			if (DigitUtil.isContain(type, missGroup.getGroup(), lotteryList
-					.get(i).getCode())) {
+		    boolean isEqual = DigitUtil.isContain(type, missGroup.getGroup(), lotteryList
+                    .get(i).getCode());
+			if (isEqual) {
 				if (intArrays[1] >= intArrays[0]) {
 					intArrays[0] = intArrays[1];
 					intArrays[2] = i;
