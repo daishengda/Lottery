@@ -1,7 +1,5 @@
 package com.dsd.lottery.util;
 
-import java.util.HashSet;
-import java.util.Set;
 import org.apache.commons.lang3.math.NumberUtils;
 
 public class DigitUtil {
@@ -74,7 +72,7 @@ public class DigitUtil {
      * @param lotteryNumber 彩票号码
      * @return
      */
-    public static boolean isContain(int type, String group, String lotteryNumber) {
+/*    public static boolean isContain(int type, String group, String lotteryNumber) {
         if (type > group.length()) {
             return isContainWhole(group, lotteryNumber);
         }
@@ -88,22 +86,25 @@ public class DigitUtil {
         return false;
     }
 
-    /**
+    *//**
      * 判断开奖号码是否包含在组合中（完成匹配的）
      * 
      * @param group 组合
      * @param lotteryNumber 彩票号码
      * @return
-     */
+     *//*
     public static boolean isContainWhole(String group, String lotteryNumber) {
         Set<Integer> indexSet = new HashSet<Integer>();
         int groupSize = group.length();
         for (int i = 0; i < lotteryNumber.length(); i++) {
-            indexSet.add(group.indexOf(lotteryNumber.charAt(i)));
+            int indexOf = group.indexOf(lotteryNumber.charAt(i));
+            if (indexOf >= 0) {
+                indexSet.add(indexOf);
+            }
             if (indexSet.size() == groupSize) {
                 return true;
             }
         }
         return false;
-    }
+    }*/
 }
