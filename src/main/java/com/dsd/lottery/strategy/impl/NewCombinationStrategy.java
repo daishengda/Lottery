@@ -3,7 +3,7 @@ package com.dsd.lottery.strategy.impl;
 import java.util.List;
 import com.dsd.lottery.forecast.model.QueryResult;
 import com.dsd.lottery.missanalyse.constain.IMissComparator;
-import com.dsd.lottery.missanalyse.constain.impl.ThirtysixComparator;
+import com.dsd.lottery.missanalyse.constain.impl.MissComparatorFactory;
 import com.dsd.lottery.model.LotteryModel;
 import com.dsd.lottery.model.StorageModel;
 import com.dsd.lottery.strategy.IStrategy;
@@ -20,7 +20,7 @@ public class NewCombinationStrategy implements IStrategy {
     /**
      * 用3星组6的比较器
      */
-    private IMissComparator comparator = new ThirtysixComparator();
+    private IMissComparator comparator;
 
     /**
      * 中三个便满足
@@ -41,7 +41,10 @@ public class NewCombinationStrategy implements IStrategy {
         } catch (InterruptedException e) {
             LogUtil.error("解析数据失败！", e);
         }
+    }
 
+    public NewCombinationStrategy() {
+        comparator = MissComparatorFactory.getMissComparator(MissComparatorFactory.DEFAULT_KEY);
     }
 
     private String[] convertChar(char[][] charArrays) {
